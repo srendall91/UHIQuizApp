@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ListQuizzes from './ListQuizzes';
+import * as DataAPI from './utils/DataAPI'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
+
+  state = {
+    quizzes: [],
+    screen: 'list'
+  };
+
+  componentDidMount(){
+      DataAPI.getAllQuizzes()
+        .then((quizzes) => {
+          console.log("mount function before setState",quizzes);
+          this.setState(() => ({
+            quizzes
+          }))
+        });
+        console.log("mount function after setState",this.state.quizzes);
+    };
+
   render() {
+    console.log('App.js called, state = ',this.state)
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="container">
+        App.js: App class called
+        <Route exact path='/' render={()=>(
+          <ListQuizzes
+            quizzes={this.state.quizzes}
+         />
+       )}/>
       </div>
     );
-  }
+  };
 }
+
 
 export default App;
