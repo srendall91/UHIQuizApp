@@ -12,3 +12,33 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+body{
+  background-color: #f0f0ff
+}
+
+.card{
+  background-color: #ddddf0;
+  border: 2px solid;
+}
+
+.completed{
+  background-color: #d0d0e0;
+  border: solid black;
+
+}
+.completed .btn{
+  background-color: #5555ff;
+  color: white;
+
+}
+
+.attempted{
+  background-color: #f0f0e0;
+  border: solid blue;
+
+}
+.attempted .btn{
+  background-color: blue;
+  color: white;
+}

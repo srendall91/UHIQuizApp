@@ -16,17 +16,21 @@ class ListQuizzes extends Component {
     }
 
     return (
-      <div>
+      <div class='row'>
+
       {quizvalues.map((quiz)=>(
-        <div key={quiz.id}>
-          <div className="card text-center">
-            <div className="card-body">
-              <h5 className="card-title">{quiz.name}</h5>
-              <button
-                type="button" className="btn btn-dark">X</button>
-            </div>
-          </div>
-        </div>
+        <div class="col-sm-6 col-md-4">
+					<div class="card m-2 text-center attempted">
+						<div class="card-body">
+							<h5 class="card-title ">{quiz.name}</h5>
+							<div class="row mt-3 mb-3 justify-content-center">
+								<div class="col-auto card-text">completed:</div>
+								<div class="col-auto card-text">{quiz.answeredCorrectly.length}/{quiz.questions.length} correct</div>
+							</div>
+							<a href="./complete.html" class="btn">Try again?</a>
+						</div>
+					</div>
+				</div>
       ))}
       </div>
     )
