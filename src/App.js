@@ -8,7 +8,8 @@ import { Route } from 'react-router-dom'
 class App extends Component {
 
   state = {
-    quizzes: []
+    quizzes: {},
+    questions: {}
   };
 
   componentDidMount(){
@@ -20,6 +21,16 @@ class App extends Component {
           }))
         });
         console.log("mount function after setState",this.state.quizzes);
+
+      DataAPI.getAllQuestions()
+        .then((questions) => {
+          console.log("question mount function before setState",questions);
+          this.setState(() => ({
+            questions
+          }))
+        })
+      console.log("questions",this.state.questions);
+
     };
 
   render() {
