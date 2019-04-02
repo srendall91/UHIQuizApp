@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import ListQuizzes from './ListQuizzes';
+import QuizDashboard from './QuizDashboard';
+
 import * as DataAPI from './utils/DataAPI'
 import { Route } from 'react-router-dom'
 
 class App extends Component {
 
   state = {
-    quizzes: [],
-    screen: 'list'
+    quizzes: []
   };
 
   componentDidMount(){
@@ -28,7 +28,7 @@ class App extends Component {
       <div className="container">
         App.js: App class called
         <Route exact path='/' render={()=>(
-          <ListQuizzes
+          <QuizDashboard
             quizzes={this.state.quizzes}
          />
        )}/>

@@ -1,9 +1,7 @@
-import React, {Component} from 'react'
-import { Link } from 'react-router-dom'
-import QuizCard from './QuizCard';
+import React, {Component} from 'react';
+import ListQuizzes from './ListQuizzes';
 
-
-class ListQuizzes extends Component {
+class QuizDashboard extends Component {
 
   render(){
     let quizzes = this.props.quizzes
@@ -18,17 +16,14 @@ class ListQuizzes extends Component {
     }
 
     return (
-      <div className="row">
-      ListQuizzes.js: App class called
-      {quizvalues.map((quiz)=>(
-          <QuizCard
-            key = {quiz.id}
-            quiz = {quiz}
-            />
-      ))}
+      <div className="container">
+        QuizDashboard.js: App class called
+        <ListQuizzes
+            quizzes={this.props.quizzes}
+         />
       </div>
-    )
+    );
   }
 }
 
-export default ListQuizzes
+export default QuizDashboard
