@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
 
 class QuizCard extends Component {
 
@@ -22,7 +23,15 @@ class QuizCard extends Component {
                 /{quiz.questions.length} questions attempted
               </div>
 
-            <a href="#" className="btn">Resume?</a>
+            <Link to={{
+              pathname:"/quiz",
+              state:{
+                quizId:quiz.id,
+                questionId:quiz.questionsLeft[0]
+              }
+            }}
+            className="btn">Resume?
+            </Link>
           </div>
         </div>
       </div>

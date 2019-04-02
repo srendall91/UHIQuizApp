@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import QuizDashboard from './QuizDashboard';
+import Question from './Question';
 
 import * as DataAPI from './utils/DataAPI'
 import { Route } from 'react-router-dom'
@@ -35,6 +36,7 @@ class App extends Component {
 
   render() {
     console.log('App.js called, state = ',this.state)
+    console.log('App.js called, state = ',this)
     return (
       <div className="container">
         App.js: App class called
@@ -43,10 +45,15 @@ class App extends Component {
             quizzes={this.state.quizzes}
          />
        )}/>
+       <Route exact path='/quiz' render={({location})=>(
+         <Question
+          quizId = {location.state.quizId}
+          question = {this.state.questions[location.state.question]}
+        />
+      )}/>
       </div>
     );
   };
 }
-
 
 export default App;
