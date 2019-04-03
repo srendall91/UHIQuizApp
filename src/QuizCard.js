@@ -27,7 +27,8 @@ class QuizCard extends Component {
               pathname:"/quiz",
               state:{
                 quizId:quiz.id,
-                questionId:quiz.questionsLeft[0]
+                questionId:quiz.questionsLeft[0],
+                questionsLeft: quiz.questionsLeft
               }
             }}
             className="btn">Resume?

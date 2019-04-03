@@ -38,19 +38,27 @@ class App extends Component {
     console.log('App.js called, state = ',this.state)
     console.log('App.js called, state = ',this)
     return (
-      <div className="container">
-        App.js: App class called
-        <Route exact path='/' render={()=>(
-          <QuizDashboard
-            quizzes={this.state.quizzes}
-         />
-       )}/>
-       <Route exact path='/quiz' render={({location})=>(
-         <Question
-          quizId = {location.state.quizId}
-          question = {this.state.questions[location.state.question]}
-        />
-      )}/>
+      <div>
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+          <a class="navbar-brand col-3 col-md-2 mr-0" href="/">Quizzes</a>
+        </nav>
+
+        <div className="container">
+          <Route exact path='/' render={()=>(
+            <QuizDashboard
+              quizzes={this.state.quizzes}
+           />
+         )}/>
+         <Route exact path='/quiz' render={({location})=>(
+           <Question
+            quizId = {location.state.quizId}
+            quiz = {this.state.quizzes[location.state.quizId]}
+            quizName = {this.state.quizzes[location.state.quizId].name}
+            question = {this.state.questions[location.state.questionId]}
+            questionText = {this.state.questions[location.state.questionId]['questionText']}
+          />
+        )}/>
+        </div>
       </div>
     );
   };
