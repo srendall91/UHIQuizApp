@@ -18,7 +18,6 @@ class QuizDashboard extends Component {
 
     return (
       <div className="container">
-        QuizDashboard.js: App class called
         <ListQuizzes
             quizzes={this.props.quizzes}
          />

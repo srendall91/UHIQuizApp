@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import ListAnswerButtons from './ListAnswerButtons'
+
 class Question extends Component {
 
   render(){
@@ -35,16 +37,9 @@ class Question extends Component {
 
 				<div className="col-sm">
 					<div className="p-3 mb-2 bg-light">
-						<div className="row">
-							<div className="col-6">
-								<a href="./revealanswer.html" className="btn btn-secondary btn-block m-1 p-2">Answer 1, with extra text</a>
-								<a href="./revealanswer.html" className="btn btn-secondary btn-block m-1 p-2">Answer 2</a>
-							</div>
-							<div className="col-6">
-								<a href="./revealanswer.html" className="btn btn-secondary btn-block m-1 p-2">Answer 3!</a>
-								<a href="./revealanswer.html" className="btn btn-secondary btn-block m-1 p-2">Answer 4</a>
-							</div>
-						</div>
+          <ListAnswerButtons
+            answers = {question.answers}
+          />
 				</div>
 			</div>
 		</div>
