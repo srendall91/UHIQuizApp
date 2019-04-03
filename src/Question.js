@@ -4,15 +4,21 @@ import ListAnswerButtons from './ListAnswerButtons'
 
 class Question extends Component {
 
+  answeredQuestion = (answer) =>{
+    this.props.answeredQuestion({
+      quizId: this.props.quizId,
+      questionId: this.props.question.id,
+      correct: answer.correct
+    })
+  }
+
   render(){
     const { quizId, quiz, quizName, question, questionText } = this.props
-    // let quizId = this.props.quizId
-    // let question = this.props.question
 
-    console.log('question.js',this, quizId, question)
-    console.log('\nquestion.id', question)
-    console.log('\nquestionText', questionText)
-    console.log('\nquestionAttempted', question.questionAttempted)
+    console.log('question.js',this)
+    console.log('\nquestion.id', question.id)
+    // console.log('\nquestionText', questionText)
+    // console.log('\nquestionAttempted', question.questionAttempted)
 
     return (
       <div className="container-fluid">
@@ -39,6 +45,7 @@ class Question extends Component {
 					<div className="p-3 mb-2 bg-light">
           <ListAnswerButtons
             answers = {question.answers}
+            answerSelected = {this.answeredQuestion}
           />
 				</div>
 			</div>
