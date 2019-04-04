@@ -11,8 +11,18 @@ class App extends Component {
 
   state = {
     quizzes: {},
-    questions: {}
+    questions: {},
+    images:{}
   };
+
+// https://stackoverflow.com/questions/42118296/dynamically-import-images-from-a-directory-using-webpack
+  importAllImages = (r) => {
+    let images = {};
+    r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images;
+  }
+
+
 
   answeredQuestion = (answer) =>{
     console.log(answer)
@@ -58,6 +68,11 @@ class App extends Component {
         })
       console.log("questions",this.state.questions);
 
+      let images = this.importAllImages(require.context('./images', false, /\.(png|jpe?g|svg)$/))
+      this.setState(() => ({
+        images
+      }))
+
     };
 
   render() {
@@ -82,17 +97,19 @@ class App extends Component {
             quiz = {this.state.quizzes[location.state.quizId]}
             quizName = {this.state.quizzes[location.state.quizId].name}
             question = {this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]}
+            // images={this.state.images}
+            image = {this.state.images[this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]].image]}
             answeredQuestion = {this.answeredQuestion}
             //some of these separated props are also carried within 'quiz'
           />
         )}/>
         <Route exact path='/quiz/reset'
-          onEnter={()=>console.log('Entered redirect function')}
+          onEnter={()=>console.log('Entered redirect function onEnter')}
           // onEnter = {({location})=> {
           //   console.log('route path onEnter called', location)
           //   this.resetQuiz(location.state.quizId)}}
           render={({location})=> {
-            console.log('Entered redirect function', location)
+            console.log('Entered redirect function -render', location)
             this.resetQuiz(location.state.quizId)
 
           return (
