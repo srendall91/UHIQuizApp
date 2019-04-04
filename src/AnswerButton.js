@@ -11,15 +11,16 @@ class AnswerButton extends Component {
 
   render(){
     return (
-      <div>
-        <ul>
+      <div class="btn-block pr-2">
+        <div>
           <button
             key={this.props.id}
+            type="button"
             className="btn btn-secondary btn-block m-1 p-2"
             onClick={this.handleSubmit}
           >{this.props.text}
           </button>
-        </ul>
+        </div>
       </div>
     )
   }
