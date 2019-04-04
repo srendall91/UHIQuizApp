@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
 
 import ListAnswerButtons from './ListAnswerButtons'
 
@@ -71,10 +72,16 @@ class Question extends Component {
   				<div className="col-sm">
   						<div className="row p-3 mb-2 justify-content-center">
   							<div className="col-4">
-  								<a href="./question.html" className="btn btn-info">Try Again</a>
+  								<Link to={{
+                    pathname:'/quiz/reset',
+                    state:{
+                      quizId:quiz.id,
+                    }
+                  }}
+                     className="btn btn-info">Try Again</Link>
   							</div>
   							<div className="col-4">
-  								<a href="./index.html" className="btn btn-info">Main menu</a>
+  								<Link to={{pathname:'/'}} className="btn btn-info">Main menu</Link>
   							</div>
   						</div>
   				</div>

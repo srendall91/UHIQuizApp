@@ -5,9 +5,7 @@ class QuizCard extends Component {
 
   render(){
     let quiz = this.props.quiz
-    let buttonText =''
-    let cardClass ="card m-2 text-center attempted"
-    let cardText =""
+    
     console.log('quiz', quiz, '\ncomplete object, this',this)
 
       if (quiz.questionsLeft.length === 0) {
@@ -21,7 +19,7 @@ class QuizCard extends Component {
                   </div>
 
                 <Link to={{
-                  pathname:"/quiz",
+                  pathname:"/quiz/reset",
                   state:{
                     quizId:quiz.id,
                   }

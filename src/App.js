@@ -5,7 +5,7 @@ import Question from './Question';
 
 import * as DataAPI from './utils/DataAPI'
 import { Route } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class App extends Component {
 
@@ -29,6 +29,14 @@ class App extends Component {
     this.setState(this.state) // force React to update all child components
 
     console.log(this.state.quizzes)
+  }
+
+  resetQuiz = (quiz) =>{
+    console.log('resetQuizFunction Called', quiz)
+    this.state.quizzes[quiz].questionsLeft = this.state.quizzes[quiz].questions.slice()
+    this.state.quizzes[quiz].answeredCorrectly=[]
+    this.state.quizzes[quiz].answeredIncorrectly=[]
+    this.setState(this.state)
   }
 
   componentDidMount(){
@@ -78,6 +86,25 @@ class App extends Component {
             //some of these separated props are also carried within 'quiz'
           />
         )}/>
+        <Route exact path='/quiz/reset'
+          onEnter={()=>console.log('Entered redirect function')}
+          // onEnter = {({location})=> {
+          //   console.log('route path onEnter called', location)
+          //   this.resetQuiz(location.state.quizId)}}
+          render={({location})=> {
+            console.log('Entered redirect function', location)
+            this.resetQuiz(location.state.quizId)
+
+          return (
+            <Redirect to = {{
+              pathname:"/quiz",
+              state:{
+                quizId:location.state.quizId,
+              }
+            }}
+            />
+       )}}/>
+
         </div>
       </div>
     );
