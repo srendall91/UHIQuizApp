@@ -56,17 +56,32 @@ class Question extends Component {
   } else {
     return(
       <div className="container-fluid">
-      <div className="col-sm">
-        <h3 className="text-center">{quizName}</h3>
-      </div>
-        <div className="row mt-3 mb-3">
-          <h1>Quiz Finished</h1>
+        <div className="row p-3">
+  				<div className="col-sm">
+            <h1 className="text-center">{quizName}</h1>
+  					<h3 className="text-center">Quiz complete</h3>
+  				</div>
+  			</div>
+  			<div className="row">
+  				<div className="col-sm m-3 p-3 mb-2 bg-light text-center">
+  							<p>Well done on completing the quiz</p>
+  							<p>You scored {quiz.answeredCorrectly.length} out of {quiz.questions.length}</p>
+  				</div>
+
+  				<div className="col-sm">
+  						<div className="row p-3 mb-2 justify-content-center">
+  							<div className="col-4">
+  								<a href="./question.html" className="btn btn-info">Try Again</a>
+  							</div>
+  							<div className="col-4">
+  								<a href="./index.html" className="btn btn-info">Main menu</a>
+  							</div>
+  						</div>
+  				</div>
         </div>
-        <div className="row mt-3 mb-3">
-          <h3>You scored {quiz.answeredCorrectly.length} out of {quiz.questions.length}</h3>
-        </div>
       </div>
-    )
+
+  );
 
   }
   }

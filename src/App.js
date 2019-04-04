@@ -5,6 +5,7 @@ import Question from './Question';
 
 import * as DataAPI from './utils/DataAPI'
 import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class App extends Component {
 
@@ -57,7 +58,7 @@ class App extends Component {
     return (
       <div>
         <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-          <a className="navbar-brand col-3 col-md-2 mr-0" href="/">Quizzes</a>
+          <Link to={{pathname:'/'}} className="navbar-brand col-3 col-md-2 mr-0">Quizzes</Link>
         </nav>
 
         <div className="container">
@@ -73,7 +74,6 @@ class App extends Component {
             quiz = {this.state.quizzes[location.state.quizId]}
             quizName = {this.state.quizzes[location.state.quizId].name}
             question = {this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]}
-            questionText = {this.state.questions[location.state.questionId]['questionText']}
             answeredQuestion = {this.answeredQuestion}
             //some of these separated props are also carried within 'quiz'
           />

@@ -22,6 +22,16 @@ body{
   border: 2px solid;
 }
 
+.notStarted{
+  border: solid green;
+
+}
+
+.notStarted .btn{
+  background-color: green;
+  color: white;
+}
+
 .completed{
   background-color: #d0d0e0;
   border: solid black;
@@ -33,12 +43,12 @@ body{
 
 }
 
-.attempted{
+.started{
   background-color: #f0f0e0;
   border: solid blue;
 
 }
-.attempted .btn{
+.started .btn{
   background-color: blue;
   color: white;
 }
