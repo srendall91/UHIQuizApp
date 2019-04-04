@@ -17,8 +17,10 @@ class App extends Component {
     console.log(answer)
     if (answer.correct){
       this.state.quizzes[answer.quizId].answeredCorrectly.push(answer.questionId)
+      DataAPI.questionCorrect(answer.quizId, answer.questionId)
     } else if (!answer.correct) {
       this.state.quizzes[answer.quizId].answeredIncorrectly.push(answer.questionId)
+      DataAPI.questionIncorrect(answer.quizId, answer.questionId)
     }
 
     this.state.quizzes[answer.quizId].questionsLeft.shift();
