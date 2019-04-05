@@ -65,27 +65,31 @@ class Question extends Component {
   					<h3 className="text-center">Quiz complete</h3>
   				</div>
   			</div>
-  			<div className="row">
-  				<div className="col-sm m-3 p-3 mb-2 bg-light text-center">
-  							<p>Well done on completing the quiz</p>
-  							<p>You scored {quiz.answeredCorrectly.length} out of {quiz.questions.length}</p>
-  				</div>
+        <div className="row">
+          <div className="col-sm col-md text-center">
+            <img className="mb-4 rounded img-fluid max-width:50%" src={image}/>
+          </div>
 
-  				<div className="col-sm">
-  						<div className="row p-3 mb-2 justify-content-center">
-  							<div className="col-4">
-  								<Link to={{
-                    pathname:'/quiz/reset',
-                    state:{
-                      quizId:quiz.id,
-                    }
-                  }}
-                     className="btn btn-info">Try Again</Link>
-  							</div>
-  							<div className="col-4">
-  								<Link to={{pathname:'/'}} className="btn btn-info">Main menu</Link>
-  							</div>
-  						</div>
+  				<div className="col-sm col-xs col-md text-center">
+            <div className="row m-3 p-3 mb-2 bg-light text-center">
+  							Well done on completing the quiz
+                <br/>
+  							You scored {quiz.answeredCorrectly.length} out of {quiz.questions.length}
+  				  </div>
+						<div className="row p-3 mb-2 justify-content-center">
+							<div className="col-6 text-center">
+								<Link to={{
+                  pathname:'/quiz/reset',
+                  state:{
+                    quizId:quiz.id,
+                  }
+                }}
+                   className="btn btn-info">Try Again</Link>
+							</div>
+							<div className="col-6 justify-content-center">
+								<Link to={{pathname:'/'}} className="btn btn-info">Main menu</Link>
+							</div>
+            </div>
   				</div>
         </div>
       </div>

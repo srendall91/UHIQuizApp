@@ -22,8 +22,6 @@ class App extends Component {
     return images;
   }
 
-
-
   answeredQuestion = (answer) =>{
     console.log(answer)
     if (answer.correct){
@@ -47,6 +45,7 @@ class App extends Component {
     this.state.quizzes[quiz].answeredCorrectly=[]
     this.state.quizzes[quiz].answeredIncorrectly=[]
     this.setState(this.state)
+    DataAPI.resetQuiz(quiz)
   }
 
   componentDidMount(){
@@ -96,7 +95,7 @@ class App extends Component {
            if (this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]){
              image=this.state.images[this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]].image]
            } else {
-             image='none'
+             image=this.state.images['endOfQuiz.png']
            }
            return (
            <Question
