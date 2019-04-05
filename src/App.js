@@ -91,18 +91,25 @@ class App extends Component {
            />
          )}/>
 
-         <Route exact path='/quiz' render={({location})=>(
+         <Route exact path='/quiz' render={({location})=>{
+           let image ={}
+           if (this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]){
+             image=this.state.images[this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]].image]
+           } else {
+             image='none'
+           }
+           return (
            <Question
             quizId = {location.state.quizId}
             quiz = {this.state.quizzes[location.state.quizId]}
             quizName = {this.state.quizzes[location.state.quizId].name}
             question = {this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]}
             // images={this.state.images}
-            image = {this.state.images[this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]].image]}
+            image = {image}
             answeredQuestion = {this.answeredQuestion}
             //some of these separated props are also carried within 'quiz'
           />
-        )}/>
+        )}}/>
         <Route exact path='/quiz/reset'
           onEnter={()=>console.log('Entered redirect function onEnter')}
           // onEnter = {({location})=> {
