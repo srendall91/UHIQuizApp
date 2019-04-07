@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
 
+import HeaderNav from './HeaderNav';
 import ListAnswerButtons from './ListAnswerButtons'
 
 class Question extends Component {
@@ -23,8 +24,16 @@ class Question extends Component {
 
     if (question) {
       let imageURL = 'images/'+question.image
+      let showHintLink = !question.hintViewed
+
       console.log('imageurl', imageURL)
       return (
+        <div>
+        <HeaderNav
+          quizId = {quizId}
+          question = {question}
+          showHintLink = {showHintLink}
+          />
         <div className="container-fluid">
     			<div className="row mt-3 mb-3">
     				<div className="col-sm">
@@ -55,9 +64,12 @@ class Question extends Component {
     			</div>
     		</div>
       </div>
+      </div>
     );
   } else {
     return(
+      <div>
+      <HeaderNav/>
       <div className="container-fluid">
         <div className="row p-3">
   				<div className="col-sm">
@@ -92,6 +104,7 @@ class Question extends Component {
             </div>
   				</div>
         </div>
+      </div>
       </div>
 
   );

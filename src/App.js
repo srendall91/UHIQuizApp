@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import QuizDashboard from './QuizDashboard';
+import HeaderNav from './HeaderNav';
 import Question from './Question';
+
 
 import * as DataAPI from './utils/DataAPI'
 import { Route } from 'react-router-dom'
@@ -12,7 +14,7 @@ class App extends Component {
   state = {
     quizzes: {},
     questions: {},
-    images:{}
+    images:{},
   };
 
 // https://stackoverflow.com/questions/42118296/dynamically-import-images-from-a-directory-using-webpack
@@ -79,11 +81,7 @@ class App extends Component {
     console.log('App.js called, state = ',this)
     return (
       <div>
-        <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-          <Link to={{pathname:'/'}} className="navbar-brand col-3 col-md-2 mr-0">Quizzes</Link>
-        </nav>
 
-        <div className="container">
           <Route exact path='/' render={()=>(
             <QuizDashboard
               quizzes={this.state.quizzes}
@@ -98,17 +96,17 @@ class App extends Component {
              image=this.state.images['endOfQuiz.png']
            }
            return (
-           <Question
-            quizId = {location.state.quizId}
-            quiz = {this.state.quizzes[location.state.quizId]}
-            quizName = {this.state.quizzes[location.state.quizId].name}
-            question = {this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]}
-            // images={this.state.images}
-            image = {image}
-            answeredQuestion = {this.answeredQuestion}
-            //some of these separated props are also carried within 'quiz'
-          />
-        )}}/>
+             <Question
+              quizId = {location.state.quizId}
+              quiz = {this.state.quizzes[location.state.quizId]}
+              quizName = {this.state.quizzes[location.state.quizId].name}
+              question = {this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]}
+              // images={this.state.images}
+              image = {image}
+              answeredQuestion = {this.answeredQuestion}
+            />
+          )}}/>
+
         <Route exact path='/quiz/reset'
           onEnter={()=>console.log('Entered redirect function onEnter')}
           // onEnter = {({location})=> {
@@ -126,10 +124,10 @@ class App extends Component {
               }
             }}
             />
-       )}}/>
+          )}}/>
 
-        </div>
-      </div>
+       </div>
+
     );
   };
 }

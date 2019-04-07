@@ -5,12 +5,12 @@ class QuizCard extends Component {
 
   render(){
     let quiz = this.props.quiz
-    
+
     console.log('quiz', quiz, '\ncomplete object, this',this)
 
       if (quiz.questionsLeft.length === 0) {
         return (
-          <div key={quiz.id} className="col-sm-6 col-md-4">
+          <div key={quiz.id} className="col-sm-6 col-md-6">
             <div className="card m-2 text-center completed">
               <div className="card-body">
                 <h5 className="card-title ">{quiz.name}</h5>
@@ -32,7 +32,7 @@ class QuizCard extends Component {
         )
       } else if (quiz.questionsLeft.length === quiz.questions.length) {
         return (
-          <div key={quiz.id} className="col-sm-6 col-md-4">
+          <div key={quiz.id} className="col-sm-6 col-md-6">
             <div className="card m-2 text-center notStarted">
               <div className="card-body">
                 <h5 className="card-title ">{quiz.name}</h5>
@@ -54,7 +54,7 @@ class QuizCard extends Component {
         )
       } else {
         return (
-          <div key={quiz.id} className="col-sm-6 col-md-4">
+          <div key={quiz.id} className="col-sm-6 col-md-6">
             <div className="card m-2 text-center started">
               <div className="card-body">
                 <h5 className="card-title ">{quiz.name}</h5>
