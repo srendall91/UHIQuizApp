@@ -15,7 +15,7 @@ class Question extends Component {
   }
 
   render(){
-    const { quizId, quiz, quizName, question, image } = this.props
+    const { quizId, quiz, question, image } = this.props
 
     console.log('question.js',this)
     //console.log('\nquestion.id', question.id)
@@ -37,7 +37,7 @@ class Question extends Component {
         <div className="container-fluid">
     			<div className="row mt-3 mb-3">
     				<div className="col-sm">
-    					<h3 className="text-center">{quizName}</h3>
+    					<h3 className="text-center">{quiz.name}</h3>
     				</div>
             <div className="col-sm">
     					<h5 className="text-center">Question {quiz.questions.length-quiz.questionsLeft.length +1}
@@ -73,7 +73,7 @@ class Question extends Component {
       <div className="container-fluid">
         <div className="row p-3">
   				<div className="col-sm">
-            <h1 className="text-center">{quizName}</h1>
+            <h1 className="text-center">{quiz.name}</h1>
   					<h3 className="text-center">Quiz complete</h3>
   				</div>
   			</div>

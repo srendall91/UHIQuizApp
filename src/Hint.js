@@ -7,7 +7,7 @@ class Hint extends Component {
 
 
   render(){
-    const { quizId, question, showBackLink } = this.props
+    const { quizId, question } = this.props
 
     return(
       <div>

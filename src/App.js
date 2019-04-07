@@ -23,8 +23,8 @@ class App extends Component {
     return images;
   }
 
-  answeredQuestion = (answer) =>{
-    console.log(answer)
+  answeredQuestion = (answer) => {
+    console.log('Question Answered', answer)
     if (answer.correct){
       this.state.quizzes[answer.quizId].answeredCorrectly.push(answer.questionId)
       DataAPI.questionCorrect(answer.quizId, answer.questionId)
@@ -32,12 +32,21 @@ class App extends Component {
       this.state.quizzes[answer.quizId].answeredIncorrectly.push(answer.questionId)
       DataAPI.questionIncorrect(answer.quizId, answer.questionId)
     }
-
     this.state.quizzes[answer.quizId].questionsLeft.shift();
-
     this.setState(this.state) // force React to update all child components
+    DataAPI.questionAttempt(answer.questionId)
+  }
 
-    console.log(this.state.quizzes)
+  hintViewed = (question) => {
+    this.state.questions[question].hintViewed = true;
+    DataAPI.viewedHint(question)
+  }
+
+  resetQuestions = (quiz) => {
+        for (const question of this.state.quizzes[quiz].questions){
+        this.state.questions[question].hintViewed = false
+        DataAPI.resetQuestion(question)
+    }
   }
 
   resetQuiz = (quiz) =>{
@@ -45,9 +54,11 @@ class App extends Component {
     this.state.quizzes[quiz].questionsLeft = this.state.quizzes[quiz].questions.slice()
     this.state.quizzes[quiz].answeredCorrectly=[]
     this.state.quizzes[quiz].answeredIncorrectly=[]
+    this.resetQuestions(quiz)
     this.setState(this.state)
     DataAPI.resetQuiz(quiz)
   }
+
 
   componentDidMount(){
       DataAPI.getAllQuizzes()
@@ -97,7 +108,6 @@ class App extends Component {
              <Question
               quizId = {location.state.quizId}
               quiz = {this.state.quizzes[location.state.quizId]}
-              quizName = {this.state.quizzes[location.state.quizId].name}
               question = {this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]}
               // images={this.state.images}
               image = {image}
@@ -106,6 +116,8 @@ class App extends Component {
           )}}/>
 
            <Route exact path='/quiz/hint' render={({location})=>{
+             console.log('hitn view', location.state.question)
+             this.hintViewed(location.state.question.id)
              return(
                <Hint
                 quizId = {location.state.quizId}
