@@ -11,7 +11,7 @@ class AnswerButton extends Component {
 
   render(){
     return (
-      <div class="btn-block pr-2">
+      <div className="btn-block pr-2">
         <div>
           <button
             key={this.props.id}

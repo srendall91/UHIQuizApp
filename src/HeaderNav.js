@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 class HeaderNav extends Component {
@@ -16,9 +16,21 @@ class HeaderNav extends Component {
                         question: this.props.question
                       }
                     }}
-                 className="nav-link">Hint</Link>}
-        {this.props.showBackLink && <Link to={{pathname:'/hint'}} className="nav-link">Hint</Link>}
+                 className="nav-link">
+            Hint
+          </Link>}
 
+        {this.props.showBackLink &&
+          <Link to={{
+              pathname:'/quiz',
+                state:{
+                  quizId: this.props.quizId,
+                  question: this.props.question
+                }
+              }}
+             className="nav-link">
+            Back
+           </Link>}
       </nav>
     );
   }

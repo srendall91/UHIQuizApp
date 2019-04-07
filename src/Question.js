@@ -15,7 +15,7 @@ class Question extends Component {
   }
 
   render(){
-    const { quizId, quiz, quizName, question, image, questionText } = this.props
+    const { quizId, quiz, quizName, question, image } = this.props
 
     console.log('question.js',this)
     //console.log('\nquestion.id', question.id)

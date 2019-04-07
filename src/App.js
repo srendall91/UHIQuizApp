@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import QuizDashboard from './QuizDashboard';
-import HeaderNav from './HeaderNav';
 import Question from './Question';
-
+import Hint from './Hint';
 
 import * as DataAPI from './utils/DataAPI'
 import { Route } from 'react-router-dom'
-import { Link, Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 class App extends Component {
 
@@ -78,7 +77,6 @@ class App extends Component {
 
   render() {
     console.log('App.js called, state = ',this.state)
-    console.log('App.js called, state = ',this)
     return (
       <div>
 
@@ -107,8 +105,17 @@ class App extends Component {
             />
           )}}/>
 
+           <Route exact path='/quiz/hint' render={({location})=>{
+             return(
+               <Hint
+                quizId = {location.state.quizId}
+                question = {location.state.question}
+                />
+             )
+          }}/>
+
         <Route exact path='/quiz/reset'
-          onEnter={()=>console.log('Entered redirect function onEnter')}
+          componentWillMount={()=>{console.log('Entered redirect function onEnter')}}
           // onEnter = {({location})=> {
           //   console.log('route path onEnter called', location)
           //   this.resetQuiz(location.state.quizId)}}
