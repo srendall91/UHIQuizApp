@@ -11,14 +11,14 @@ class HeaderNav extends Component {
         <Link to={{pathname:'/'}} className="navbar-brand col-3 col-md-2 mr-0">Quizzes</Link>
         {this.props.showHintLink &&
           <button
-                 className="nav-link"
+                 className="btn btn-sm btn-outline-success my-2 my-sm-0"
                  onClick = {this.props.viewHint}>
             Hint
           </button>}
 
         {this.props.showBackLink &&
           <button
-                 className="nav-link"
+                 className="btn btn-sm btn-outline-secondary my-2 my-sm-0"
                  onClick = {this.props.viewQuestion}>
             Back
           </button>
