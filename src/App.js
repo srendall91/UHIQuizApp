@@ -115,6 +115,7 @@ class App extends Component {
               image = {image}
               answeredQuestion = {this.answeredQuestion}
               hintViewed ={this.hintViewed}
+              resetQuiz = {this.resetQuiz}
             />
           )}}/>
 

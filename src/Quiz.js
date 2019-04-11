@@ -31,7 +31,7 @@ class Quiz extends Component{
   }
 
   render(){
-    const { quizId, quiz, question, image, answeredQuestion, hintViewed} = this.props
+    const { quizId, quiz, question, image, answeredQuestion, resetQuiz} = this.props
     console.log('\n quiz page',this)
 
     if (this.state.view ==='question'){
@@ -55,6 +55,7 @@ class Quiz extends Component{
                quizId = {quizId}
                quiz = {quiz}
                image = {image}
+               resetQuiz = {resetQuiz}
              />
           </div>
         )}

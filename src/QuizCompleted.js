@@ -5,6 +5,10 @@ import HeaderNav from './HeaderNav';
 
 class Completed extends Component{
 
+  resetQuiz=()=>{
+    this.props.resetQuiz(this.props.quizId)
+  }
+
   render(){
 
     const { quizId, quiz, question, image } = this.props
@@ -32,13 +36,11 @@ class Completed extends Component{
   				  </div>
 						<div className="row p-3 mb-2 justify-content-center">
 							<div className="col-6 text-center">
-								<Link to={{
-                  pathname:'/quiz/reset',
-                  state:{
-                    quizId:quiz.id,
-                  }
-                }}
-                   className="btn btn-info">Try Again</Link>
+								<button
+                   className="btn btn-info"
+                   onClick ={this.resetQuiz}>
+                   Try Again</button>
+
 							</div>
 							<div className="col-6 justify-content-center">
 								<Link to={{pathname:'/'}} className="btn btn-info">Main menu</Link>
