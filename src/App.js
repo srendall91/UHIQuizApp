@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './App.css';
 import QuizDashboard from './QuizDashboard';
+import Quiz from './Quiz';
 import Question from './Question';
 import Hint from './Hint';
 
+// new lne
 import * as DataAPI from './utils/DataAPI'
 import { Route } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
@@ -50,7 +52,7 @@ class App extends Component {
   }
 
   resetQuiz = (quiz) =>{
-    console.log('resetQuizFunction Called', quiz)
+    console.log('resetQuiz function Called for:', quiz)
     this.state.quizzes[quiz].questionsLeft = this.state.quizzes[quiz].questions.slice()
     this.state.quizzes[quiz].answeredCorrectly=[]
     this.state.quizzes[quiz].answeredIncorrectly=[]
@@ -105,13 +107,14 @@ class App extends Component {
              image=this.state.images['endOfQuiz.png']
            }
            return (
-             <Question
+             <Quiz
               quizId = {location.state.quizId}
               quiz = {this.state.quizzes[location.state.quizId]}
               question = {this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]}
               // images={this.state.images}
               image = {image}
               answeredQuestion = {this.answeredQuestion}
+              hintViewed ={this.hintViewed}
             />
           )}}/>
 

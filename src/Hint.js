@@ -15,6 +15,7 @@ class Hint extends Component {
         quizId = {quizId}
         question = {question}
         showBackLink = {true}
+        viewQuestion ={this.props.viewQuestion}
         />
         <div className="container-fluid p-3">
     			<div className="card mb-3 text-center ">
@@ -26,16 +27,11 @@ class Hint extends Component {
     						</div>
     					</div>
     					<div className="row justify-content-center">
-              <Link to={{
-                  pathname:'/quiz',
-                    state:{
-                      quizId: this.props.quizId,
-                      question: this.props.question
-                    }
-                  }}
-                 className="btn btn-info">
+              <button
+                     className="btn btn-info"
+                     onClick = {this.props.viewQuestion}>
                 Got it!
-               </Link>
+               </button>
     					</div>
     				</div>
     			</div>
