@@ -1,4 +1,18 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# UHI Quiz App
+MSc Web Technologies, Web Applications Development module
+
+**Stuart Rendall April 2019**
+
+
+Assignment set to utilise:
+* [Bootstrap](https://getbootstrap.com/): Rapid mobile-first reactive web design component library
+* [Create React App](https://github.com/facebook/create-react-app) : Javascript app development framework
+
+A simple app offering a selection of multiple choice quizzes, with support for an image and variable number of answers for each question. A hint page is also available for each question but can only be viewed once.
+
+Quiz data is retrieved from a provided server.  The user's progress is stored on this server also.
+
+The UI works on most screen sizes and shapes.
 
 ## Available Scripts
 
