@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import QuizDashboard from './QuizDashboard';
 import Quiz from './Quiz';
-import Hint from './Hint';
 
-// new lne
 import * as DataAPI from './utils/DataAPI'
 import { Route } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
@@ -26,38 +24,49 @@ class App extends Component {
 
   answeredQuestion = (answer) => {
     console.log('Question Answered', answer)
-    if (answer.correct){
-      this.state.quizzes[answer.quizId].answeredCorrectly.push(answer.questionId)
-      DataAPI.questionCorrect(answer.quizId, answer.questionId)
-    } else if (!answer.correct) {
-      this.state.quizzes[answer.quizId].answeredIncorrectly.push(answer.questionId)
-      DataAPI.questionIncorrect(answer.quizId, answer.questionId)
-    }
-    this.state.quizzes[answer.quizId].questionsLeft.shift();
-    this.setState(this.state) // force React to update all child components
+    this.setState((currentState)=>{
+      if (answer.correct){
+        currentState.quizzes[answer.quizId].answeredCorrectly.push(answer.questionId)
+        DataAPI.questionCorrect(answer.quizId, answer.questionId)
+      } else if (!answer.correct) {
+        currentState.quizzes[answer.quizId].answeredIncorrectly.push(answer.questionId)
+        DataAPI.questionIncorrect(answer.quizId, answer.questionId)
+      }
+      currentState.quizzes[answer.quizId].questionsLeft.shift();
+      return (currentState)
+    })
     DataAPI.questionAttempt(answer.questionId)
   }
 
   hintViewed = (question) => {
-    this.state.questions[question].hintViewed = true;
+    this.setState((currentState)=>{
+        currentState.questions[question].hintViewed = true;
+        return(currentState)
+    })
     DataAPI.viewedHint(question)
   }
 
   resetQuestions = (quiz) => {
-        for (const question of this.state.quizzes[quiz].questions){
-        this.state.questions[question].hintViewed = false
+    this.setState((currentState) => {
+      for (const question of currentState.quizzes[quiz].questions){
+        currentState.questions[question].hintViewed = false
         DataAPI.resetQuestion(question)
-        // setState performed in calling routine: resetQuiz
-    }
+      }
+      return (currentState)
+    })
   }
 
   resetQuiz = (quiz) =>{
-    console.log('resetQuiz function Called for:', quiz)
-    this.state.quizzes[quiz].questionsLeft = this.state.quizzes[quiz].questions.slice()
-    this.state.quizzes[quiz].answeredCorrectly=[]
-    this.state.quizzes[quiz].answeredIncorrectly=[]
+    console.log('resetQuiz function called for:', quiz)
+    this.setState((currentState) => {
+      currentState.quizzes[quiz].questionsLeft = currentState.quizzes[quiz].questions.slice()
+      currentState.quizzes[quiz].answeredCorrectly=[]
+      currentState.quizzes[quiz].answeredIncorrectly=[]
+      return (currentState)
+    })
+
     this.resetQuestions(quiz)
-    this.setState(this.state) // force React to update all child components
+
     DataAPI.resetQuiz(quiz)
   }
 

@@ -18,7 +18,6 @@ class Question extends Component {
 
     // console.log('question.js',this)
 
-      let imageURL = 'images/'+question.image
       let showHintLink = !question.hintViewed
 
       return (
