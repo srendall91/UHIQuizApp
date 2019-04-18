@@ -9,6 +9,8 @@ import { Redirect } from 'react-router-dom'
 
 class App extends Component {
 
+// state mirrors and makes full use of data model (quizzes and questions) as
+// retrieved from server
   state = {
     quizzes: {},
     questions: {},
@@ -59,6 +61,7 @@ class App extends Component {
   resetQuiz = (quiz) =>{
     console.log('resetQuiz function called for:', quiz)
     this.setState((currentState) => {
+      // .slice() forces array contents to be copied rather than setting the same pointer
       currentState.quizzes[quiz].questionsLeft = currentState.quizzes[quiz].questions.slice()
       currentState.quizzes[quiz].answeredCorrectly=[]
       currentState.quizzes[quiz].answeredIncorrectly=[]
@@ -91,6 +94,7 @@ class App extends Component {
       // console.log("questions",this.state.questions);
 
 // https://stackoverflow.com/questions/42118296/dynamically-import-images-from-a-directory-using-webpack (part 2 of 2)
+// all question images are stored in folder 'images' within src
       let images = this.importAllImages(require.context('./images', false, /\.(png|jpe?g|svg)$/))
       this.setState(() => ({
         images
@@ -110,12 +114,17 @@ class App extends Component {
          )}/>
 
          <Route exact path='/quiz' render={({location})=>{
+           // problem: if this page is accessed before QuizDashboard or browser
+           // refresh button is pressed, location.state.quizId is undefined and
+           // app breaks down
+           // However, route enables browser back button to work.
+
            let image ={}
            if (this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]){
              image=this.state.images[this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]].image]
            } else {
              image=this.state.images['endOfQuiz.png']
-             // conditions could be added for other images here. eg. low score etc.
+             // conditions could be added for other images here: e.g. low score etc.
            }
            return (
              <Quiz
@@ -132,10 +141,12 @@ class App extends Component {
           )}}/>
 
         <Route exact path='/quiz/reset'
-          // this function was superceded by direct function call from buttonpress on QuizCompleted.js
+          // this function was superceded by direct function call from buttonpress on
+          // QuizCompleted.js
           // but is still used on QuizCard.js
 
-          // path ='quiz/hint' also superceded by 'state' on quiz.js due to probematic history navigation using browser 'back' button
+          // path ='quiz/hint' also superceded by 'state' on quiz.js due to
+          // probematic history navigation using browser 'back' button
 
           // onEnter never seems to be called, so resetQuiz is in render function
           // onEnter = {({location})=> {

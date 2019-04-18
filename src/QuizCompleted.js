@@ -14,7 +14,7 @@ class Completed extends Component{
     return(
       <div>
       <HeaderNav/>
-      <div className="container-fluid">
+      <div className="container">
         <div className="row p-3">
   				<div className="col-sm">
             <h1 className="text-center">{quiz.name}</h1>

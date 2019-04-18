@@ -15,7 +15,7 @@ class Hint extends Component {
         showBackLink = {true}
         viewQuestion ={this.props.viewQuestion}
         />
-        <div className="container-fluid p-3">
+        <div className="container p-3">
     			<div className="card mb-3 text-center ">
     				<div className="card-body">
     					<h3 className="card-title ">Hint</h3>

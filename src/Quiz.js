@@ -32,6 +32,7 @@ class Quiz extends Component{
     console.log('\n quiz page',this)
 
     if (this.state.view ==='question'){
+      // 'question' will be undefined if quiz is completed (i.e. no questions left)
       if (question){
         return(
           <div>

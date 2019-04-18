@@ -4,6 +4,7 @@ import AnswerButton from './AnswerButton';
 
 
 class ListAnswerButtons extends Component {
+
   answerPressed = (answer) =>{
     this.props.answerSelected(
      answer

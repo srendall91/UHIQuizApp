@@ -26,7 +26,7 @@ class Question extends Component {
             showHintLink = {showHintLink}
             viewHint = {viewHint}
             />
-          <div className="container-fluid">
+          <div className="container">
       			<div className="row mt-3 mb-3">
       				<div className="col-sm">
       					<h3 className="text-center">{quiz.name}</h3>
