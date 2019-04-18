@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
 
 import Question from './Question';
 import Hint from './Hint';
@@ -10,28 +9,26 @@ class Quiz extends Component{
     view: 'question'
   }
 
-  // if (quiz.questionsLeft.length === 0){
-  //   this.setState({view:'completed'})
-  // } else {
-  //   this.setState({view:'question'})
-  // }
-
   componentDidMount=()=>{
     this.setState({view: 'question'})
   }
 
   viewHint = () => {
     console.log('hint button pushed')
-    this.props.hintViewed(this.props.question.id);
-    this.setState({view: 'hint'})
+    this.props.hintViewed(this.props.question.id);// mark question hint as 'viewed' in App.js[state]
+    this.setState({view: 'hint'}) // view hint
   }
 
   viewQuestion = () => {
     this.setState({view: 'question'})
   }
 
+  resetQuiz=()=>{
+    this.props.resetQuiz(this.props.quizId)
+  }
+
   render(){
-    const { quizId, quiz, question, image, answeredQuestion, resetQuiz} = this.props
+    const { quizId, quiz, question, image, answeredQuestion } = this.props
     console.log('\n quiz page',this)
 
     if (this.state.view ==='question'){
@@ -55,7 +52,7 @@ class Quiz extends Component{
                quizId = {quizId}
                quiz = {quiz}
                image = {image}
-               resetQuiz = {resetQuiz}
+               resetQuiz = {this.resetQuiz}
              />
           </div>
         )}

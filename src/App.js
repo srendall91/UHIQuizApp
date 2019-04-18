@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import QuizDashboard from './QuizDashboard';
 import Quiz from './Quiz';
-import Question from './Question';
 import Hint from './Hint';
 
 // new lne
@@ -18,7 +17,7 @@ class App extends Component {
     images:{},
   };
 
-// https://stackoverflow.com/questions/42118296/dynamically-import-images-from-a-directory-using-webpack
+// https://stackoverflow.com/questions/42118296/dynamically-import-images-from-a-directory-using-webpack (part 1 of 2)
   importAllImages = (r) => {
     let images = {};
     r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -48,6 +47,7 @@ class App extends Component {
         for (const question of this.state.quizzes[quiz].questions){
         this.state.questions[question].hintViewed = false
         DataAPI.resetQuestion(question)
+        // setState performed in calling routine: resetQuiz
     }
   }
 
@@ -57,7 +57,7 @@ class App extends Component {
     this.state.quizzes[quiz].answeredCorrectly=[]
     this.state.quizzes[quiz].answeredIncorrectly=[]
     this.resetQuestions(quiz)
-    this.setState(this.state)
+    this.setState(this.state) // force React to update all child components
     DataAPI.resetQuiz(quiz)
   }
 
@@ -65,22 +65,23 @@ class App extends Component {
   componentDidMount(){
       DataAPI.getAllQuizzes()
         .then((quizzes) => {
-          console.log("mount function before setState",quizzes);
+          // console.log("mount function before setState",quizzes);
           this.setState(() => ({
             quizzes
           }))
         });
-        console.log("mount function after setState",this.state.quizzes);
+        // console.log("mount function after setState",this.state.quizzes);
 
       DataAPI.getAllQuestions()
         .then((questions) => {
-          console.log("question mount function before setState",questions);
+          // console.log("question mount function before setState",questions);
           this.setState(() => ({
             questions
           }))
         })
-      console.log("questions",this.state.questions);
+      // console.log("questions",this.state.questions);
 
+// https://stackoverflow.com/questions/42118296/dynamically-import-images-from-a-directory-using-webpack (part 2 of 2)
       let images = this.importAllImages(require.context('./images', false, /\.(png|jpe?g|svg)$/))
       this.setState(() => ({
         images
@@ -89,7 +90,7 @@ class App extends Component {
     };
 
   render() {
-    console.log('App.js called, state = ',this.state)
+    // console.log('App.js called, state = ',this.state)
     return (
       <div>
 
@@ -105,13 +106,15 @@ class App extends Component {
              image=this.state.images[this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]].image]
            } else {
              image=this.state.images['endOfQuiz.png']
+             // conditions could be added for other images here. eg. low score etc.
            }
            return (
              <Quiz
               quizId = {location.state.quizId}
               quiz = {this.state.quizzes[location.state.quizId]}
+              // question is first item in quiz.questionsLeft array
+              // quiz page automatically updates 'question' as array is reduced
               question = {this.state.questions[this.state.quizzes[location.state.quizId].questionsLeft[0]]}
-              // images={this.state.images}
               image = {image}
               answeredQuestion = {this.answeredQuestion}
               hintViewed ={this.hintViewed}
@@ -119,21 +122,15 @@ class App extends Component {
             />
           )}}/>
 
-           <Route exact path='/quiz/hint' render={({location})=>{
-             console.log('hitn view', location.state.question)
-             this.hintViewed(location.state.question.id)
-             return(
-               <Hint
-                quizId = {location.state.quizId}
-                question = {location.state.question}
-                />
-             )
-          }}/>
-
         <Route exact path='/quiz/reset'
-          componentWillMount={()=>{console.log('Entered redirect function onEnter')}}
+          // this function was superceded by direct function call from buttonpress on QuizCompleted.js
+          // but is still used on QuizCard.js
+
+          // path ='quiz/hint' also superceded by 'state' on quiz.js due to probematic history navigation using browser 'back' button
+
+          // onEnter never seems to be called, so resetQuiz is in render function
           // onEnter = {({location})=> {
-          //   console.log('route path onEnter called', location)
+          //   console.log('route path onEnter called, location)
           //   this.resetQuiz(location.state.quizId)}}
           render={({location})=> {
             console.log('Entered redirect function -render', location)

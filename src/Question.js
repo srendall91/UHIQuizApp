@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom'
 
 import HeaderNav from './HeaderNav';
 import ListAnswerButtons from './ListAnswerButtons'
@@ -15,54 +14,49 @@ class Question extends Component {
   }
 
   render(){
-    const { quizId, quiz, question, image, viewHint, viewQuestion } = this.props
+    const { quizId, quiz, question, image, viewHint } = this.props
 
-    console.log('question.js',this)
-
-
+    // console.log('question.js',this)
 
       let imageURL = 'images/'+question.image
       let showHintLink = !question.hintViewed
 
-      console.log('imageurl', imageURL)
       return (
         <div>
-        <HeaderNav
-          quizId = {quizId}
-          question = {question}
-          showHintLink = {showHintLink}
-          viewHint = {viewHint}
-          />
-        <div className="container-fluid">
-    			<div className="row mt-3 mb-3">
-    				<div className="col-sm">
-    					<h3 className="text-center">{quiz.name}</h3>
-    				</div>
-            <div className="col-sm">
-    					<h5 className="text-center">Question {quiz.questions.length-quiz.questionsLeft.length +1}
-              /{quiz.questions.length}</h5>
-    				</div>
-    			</div>
-    			<div className="row">
-    				<div className="col-sm">
-    					<div className="p-3 mb-2 bg-light">
-    							<p>{question.questionText}</p>
-    						<div className="text-center">
-    							<img className="mb-4 rounded img-fluid" src={image}/>
-    						</div>
-    					</div>
-    				</div>
+          <HeaderNav
+            showHintLink = {showHintLink}
+            viewHint = {viewHint}
+            />
+          <div className="container-fluid">
+      			<div className="row mt-3 mb-3">
+      				<div className="col-sm">
+      					<h3 className="text-center">{quiz.name}</h3>
+      				</div>
+              <div className="col-sm">
+      					<h5 className="text-center">Question {quiz.questions.length-quiz.questionsLeft.length +1}
+                /{quiz.questions.length}</h5>
+      				</div>
+      			</div>
+      			<div className="row">
+      				<div className="col-sm">
+      					<div className="p-3 mb-2 bg-light">
+      							<p>{question.questionText}</p>
+      						<div className="text-center">
+      							<img className="mb-4 rounded img-fluid" src={image}/>
+      						</div>
+      					</div>
+      				</div>
 
-    				<div className="col-sm">
-    					<div className="p-3 mb-2 bg-light">
-              <ListAnswerButtons
-                answers = {question.answers}
-                answerSelected = {this.answeredQuestion}
-              />
-    				</div>
-    			</div>
-    		</div>
-      </div>
+      				<div className="col-sm">
+      					<div className="p-3 mb-2 bg-light">
+                <ListAnswerButtons
+                  answers = {question.answers}
+                  answerSelected = {this.answeredQuestion}
+                />
+      				</div>
+      			</div>
+      		</div>
+        </div>
       </div>
     );
 

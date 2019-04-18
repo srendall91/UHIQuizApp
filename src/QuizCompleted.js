@@ -5,13 +5,11 @@ import HeaderNav from './HeaderNav';
 
 class Completed extends Component{
 
-  resetQuiz=()=>{
-    this.props.resetQuiz(this.props.quizId)
-  }
+
 
   render(){
 
-    const { quizId, quiz, question, image } = this.props
+    const { quizId, quiz, question, image, resetQuiz } = this.props
 
     return(
       <div>
@@ -24,12 +22,12 @@ class Completed extends Component{
   				</div>
   			</div>
         <div className="row">
-          <div className="col-sm col-md text-center">
+          <div className="col-sm col-xs col-md text-center">
             <img className="mb-4 rounded img-fluid max-width:50%" src={image}/>
           </div>
 
   				<div className="col-sm col-xs col-md text-center">
-            <div className="row m-3 p-3 mb-2 bg-light text-center">
+            <div className="row m-3 p-3 mb-2 bg-light justify-content-center">
   							Well done on completing the quiz
                 <br/>
   							You scored {quiz.answeredCorrectly.length} out of {quiz.questions.length}
@@ -38,7 +36,7 @@ class Completed extends Component{
 							<div className="col-6 text-center">
 								<button
                    className="btn btn-info"
-                   onClick ={this.resetQuiz}>
+                   onClick ={resetQuiz}>
                    Try Again</button>
 
 							</div>

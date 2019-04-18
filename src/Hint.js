@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom'
 
 import HeaderNav from './HeaderNav';
 
 class Hint extends Component {
-
 
   render(){
     const { quizId, question } = this.props
@@ -27,11 +25,11 @@ class Hint extends Component {
     						</div>
     					</div>
     					<div className="row justify-content-center">
-              <button
-                     className="btn btn-info"
-                     onClick = {this.props.viewQuestion}>
-                Got it!
-               </button>
+                <button
+                   className="btn btn-info"
+                   onClick = {this.props.viewQuestion}>
+                 Got it!
+                </button>
     					</div>
     				</div>
     			</div>

@@ -7,8 +7,11 @@ class ListQuizzes extends Component {
 
   render(){
     let quizzes = this.props.quizzes
-    // let quizIds = Object.keys(quizzes)
     let quizvalues = Object.values(quizzes)
+
+    // other methods of accessing the acquired data object
+    
+    // let quizIds = Object.keys(quizzes)
     // console.log('quizzes', quizzes, '\ncomplete object, this',this,
     // '\nthis.props.quizzes', this.props.quizzes,
     // '\nquizIds', quizIds, '\nobject values' ,quizvalues)
